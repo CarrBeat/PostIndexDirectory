@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" style="-fx-background-color: ffdb8b;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carrbeat.postindexdirectory.MainController">
+   <children>
+      <AnchorPane layoutX="684.0" layoutY="98.0" prefHeight="121.0" prefWidth="286.0" style="-fx-border-color: black; -fx-border-radius: 3;">
+         <children>
+            <TextField fx:id="postIndex" alignment="CENTER" layoutX="79.0" layoutY="54.0" prefHeight="53.0" prefWidth="128.0" promptText="000000" style="-fx-background-color: d1e231;">
+               <font>
+                  <Font name="Times New Roman Bold" size="29.0" />
+               </font>
+            </TextField>
+            <Label layoutX="13.0" layoutY="14.0" text="ПОЧТОВЫЙ ИНДЕКС">
+               <font>
+                  <Font name="Times New Roman" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="258.0" layoutY="14.0" text="Справочник почтовой индексации">
+         <font>
+            <Font name="Times New Roman" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="83.0" text="Населённый пункт:">
+         <font>
+            <Font name="Times New Roman" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="111.0" layoutY="135.0" text="Улица:">
+         <font>
+            <Font name="Times New Roman" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="83.0" layoutY="183.0" text="Номер дома">
+         <font>
+            <Font name="Times New Roman" size="26.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="locality" editable="true" layoutX="299.0" layoutY="84.0" prefHeight="29.0" prefWidth="330.0" promptText="Здесь укажите населённый пункт!" style="-fx-background-color: d1e231;" visibleRowCount="14" />
+      <ComboBox fx:id="streetName" editable="true" layoutX="299.0" layoutY="135.0" prefHeight="29.0" prefWidth="330.0" promptText="Сюда введите улицу!" style="-fx-background-color: d1e231;" visibleRowCount="14" />
+      <ComboBox fx:id="houseNum" editable="true" layoutX="299.0" layoutY="204.0" prefHeight="29.0" prefWidth="330.0" promptText="Сюда введите номер дома (строения, корпуса)!" style="-fx-background-color: d1e231;" visibleRowCount="14" />
+      <Label layoutX="37.0" layoutY="218.0" text="(строения, корпуса):">
+         <font>
+            <Font name="Times New Roman" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="282.0" text="Адреса по индексу:">
+         <font>
+            <Font name="Times New Roman" size="26.0" />
+         </font>
+      </Label>
+      <TextField fx:id="outputField" alignment="TOP_LEFT" editable="false" layoutX="42.0" layoutY="320.0" prefHeight="195.0" prefWidth="521.0" promptText="Сюда выводится информация о адресах и другие сообщения" style="-fx-border-color: black; -fx-border-radius: 3;">
+         <font>
+            <Font name="Times New Roman Bold" size="17.0" />
+         </font>
+      </TextField>
+      <Button fx:id="guide" layoutX="609.0" layoutY="403.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: d1e231;" text="РУКОВОДСТВО">
+         <font>
+            <Font name="Times New Roman Bold" size="11.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="751.0" layoutY="341.0" prefHeight="130.0" prefWidth="227.0" style="-fx-border-color: black; -fx-border-radius: 3;">
+         <children>
+            <Label layoutX="21.0" layoutY="8.0" text="Для администратора">
+               <font>
+                  <Font name="Times New Roman" size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="editDButton" layoutX="114.0" layoutY="67.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: ff7518;" text="ИЗМЕНИТЬ БД">
+               <font>
+                  <Font name="Times New Roman Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="logInButton" layoutX="21.0" layoutY="47.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="77.0" style="-fx-background-color: ff7518;" styleClass="logInbutton">
+               <graphic>
+                  <ImageView fitHeight="73.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/login.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="520.0" style="-fx-background-color: efd334;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carrbeat.postindexdirectory.AuthorizeController">
+   <children>
+      <AnchorPane layoutX="1.0" layoutY="113.0" prefHeight="247.0" prefWidth="520.0" style="-fx-background-color: f0f0f0f0;">
+         <children>
+            <TextField fx:id="loginField" layoutX="152.0" layoutY="44.0" prefHeight="31.0" prefWidth="216.0" promptText="Логин" style="-fx-background-color: efd334; -fx-border-color: black; -fx-border-radius: 4;">
+               <font>
+                  <Font name="Times New Roman" size="16.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordField" layoutX="152.0" layoutY="101.0" prefHeight="31.0" prefWidth="216.0" promptText="Пароль" style="-fx-background-color: efd334; -fx-border-color: black; -fx-border-radius: 4;">
+               <font>
+                  <Font name="Times New Roman" size="16.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="authorizeButton" layoutX="201.0" layoutY="158.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" style="-fx-background-color: #9966cc; -fx-border-color: black; -fx-border-radius: 4;" text="ВОЙТИ">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="179.0" layoutY="23.0" text="Авторизация">
+         <font>
+            <Font name="Times New Roman" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="83.0" layoutY="69.0" text="(для доступа к правам администратора)">
+         <font>
+            <Font name="Times New Roman" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
