@@ -19,15 +19,8 @@ public class DatabaseHandler {
 
 
     Connection dbConnection;
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException{
-        String connectionString = "jdbc:mysql//" + dbHost + ":" + dbPort + "/" + dbName;
 
-        Class.forName("com.mysql.jdbc.Driver");
-        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
-        return  dbConnection;
-
-    }
-    public ResultSet getUser(User user){
+    public static ResultSet getUser(User user) {
         String select = "SELECT * FROM " + USER_TABLE + " WHERE " + USERS_LOGIN + " =? AND " +
                 USERS_PASSWORD + "=?";
         ResultSet resSet = null;
@@ -36,13 +29,23 @@ public class DatabaseHandler {
             prSt.setString(1, user.getLogin() );
             prSt.setString(2, user.getPassword() );
             resSet = prSt.executeQuery();
-            prSt.executeQuery();
-        } catch (SQLException e){
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
         }
         return resSet;
+    }
+
+    public Connection getDbConnection() throws ClassNotFoundException, SQLException{
+        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?verifyServerCertificate=false"+
+                "&useSSL=false"+
+                "&requireSSL=false"+
+                "&useLegacyDatetimeCode=false"+
+                "&amp"+
+                "&serverTimezone=UTC";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
+        return  dbConnection;
+
     }
 
 }
