@@ -28,12 +28,16 @@ public class AuthorizeController {
         authorizeButton.setOnAction(event -> {
             String Login = loginField.getText();
             String Password = passwordField.getText();
-            if (MainWindow.authorization(Login, Password)) {
-                ((Node) (event.getSource())).getScene().getWindow().hide();
+            if (!Login.isEmpty() | !Password.isEmpty()){
+                if (MainWindow.authorization(Login, Password)) {
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                }
+                loginField.setText("");
+                passwordField.setText("");
+            } else{
+                loginField.setPromptText("Логин неверный!");
+                passwordField.setPromptText("Пароль неверный!");
             }
-            ;
-            loginField.setText("");
-            passwordField.setText("");
         });
     }
 }

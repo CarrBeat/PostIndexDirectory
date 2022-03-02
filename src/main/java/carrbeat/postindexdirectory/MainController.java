@@ -39,15 +39,21 @@ public class MainController {
     @FXML
     private ComboBox<?> streetName;
 
+
+
     @FXML
     void initialize() {
-        logInButton.setOnAction(event -> {
-            try {
-                openAuthorizeMethod();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+            logInButton.setOnAction(event -> {
+                try {
+                    if (!MainWindow.isAuthorized()){
+                        openAuthorizeMethod();
+                    } else{
+                        outputField.setText("Ошибка - авторизация уже пройдена!");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
     }
     public void openAuthorizeMethod() throws Exception{
         AuthorizeWindow authWindow = new AuthorizeWindow();

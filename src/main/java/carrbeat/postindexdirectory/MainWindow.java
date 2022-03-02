@@ -10,6 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class MainWindow extends Application {
+
+    private static boolean isAuthorize = false;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("main-view.fxml"));
@@ -26,6 +29,12 @@ public class MainWindow extends Application {
     public static boolean authorization(String inLogin, String inPassword) {
         String login = null;
         String password = null;
+
+
+
+
+
+
         try {
             File file = new File("src\\data.txt");
             FileReader fr = new FileReader(file);
@@ -41,10 +50,15 @@ public class MainWindow extends Application {
         }
         if (inLogin.equals(login) & inPassword.equals(password)) {
             System.out.println("Авторизация пройдена! ");
-            return(true);
+            isAuthorize = true;
+            return true;
         } else{
             return false;
         }
-
     }
+
+    public static boolean isAuthorized() {
+        return isAuthorize;
+    }
+
 }
