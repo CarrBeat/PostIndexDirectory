@@ -1,5 +1,7 @@
 package carrbeat.postindexdirectory;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -29,8 +31,12 @@ public class AuthorizeController {
             String Login = loginField.getText();
             String Password = passwordField.getText();
             if (!Login.isEmpty() | !Password.isEmpty()){
-                if (Authorize.authorization(Login, Password)) {
-                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                try {
+                    if (Authorize.authorization(Login, Password)) {
+                        ((Node) (event.getSource())).getScene().getWindow().hide();
+                    }
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException | SQLException e) {
+                    e.printStackTrace();
                 }
                 loginField.setText("");
                 passwordField.setText("");

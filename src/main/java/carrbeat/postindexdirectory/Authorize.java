@@ -3,11 +3,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.*;
 
 public class Authorize extends Application {
     Stage stage = new Stage();
@@ -24,50 +21,26 @@ public class Authorize extends Application {
         launch(args);
     }
 
-    public static boolean authorization(String inLogin, String inPassword) {
-        String url = "jdbc:mysql://localhost/postindexdirectory";
-        Object loginField = null;
-        String username = loginField.getText();
-        String
-
-
-
-
-        String login = null;
-        String password = null;
-
-
-        try {
-            File file = new File("src\\data.txt");
-            FileReader fr = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fr);
-            String line = bufferedReader.readLine();
-            if (line != null) {
-                login = line;
-                line = bufferedReader.readLine();
-                password = line;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static boolean authorization(String inLogin, String inPassword) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, SQLException {
+        String url = "jdbc:mysql://127.0.0.1/postindexdirectory";
+        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+        String login;
+        String password;
+        try(Connection connection = DriverManager.getConnection(url, "root", "carrbeat")){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM admin");
+            resultSet.next();
+            login = resultSet.getString("login");
+            password = resultSet.getString("password");
         }
-
-
-
-
-
-
         if (inLogin.equals(login) & inPassword.equals(password)) {
-            System.out.println("Авторизация пройдена! ");
             Main.isAuthorized(true);
             return true;
         } else{
             return false;
         }
     }
-
     void showWindow() throws Exception{
         start(stage);
     }
-
-
 }
