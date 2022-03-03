@@ -34,6 +34,9 @@ public class AuthorizeController {
                 try {
                     if (Authorize.authorization(Login, Password)) {
                         ((Node) (event.getSource())).getScene().getWindow().hide();
+                    } else{
+                        loginField.setPromptText("Логин неверный!");
+                        passwordField.setPromptText("Пароль неверный!");
                     }
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException | SQLException e) {
                     e.printStackTrace();

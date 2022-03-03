@@ -43,18 +43,21 @@ public class MainController {
 
     @FXML
     void initialize() {
-            logInButton.setOnAction(event -> {
-                try {
-                    if (!Main.isAuthorized()){
-                        openAuthorizeMethod();
-                    } else{
-                        outputField.setText("Ошибка - авторизация уже пройдена!");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+        logInButton.setOnAction(event -> {
+            try {
+                if (!Main.isAuthorized()) {
+                    openAuthorizeMethod();
+                } else {
+                    outputField.setText("Ошибка - авторизация уже пройдена!");
                 }
-            });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
+
+
+
     public void openAuthorizeMethod() throws Exception{
         Authorize authWindow = new Authorize();
         authWindow.showWindow();
