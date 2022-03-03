@@ -45,7 +45,7 @@ public class MainController {
     void initialize() {
             logInButton.setOnAction(event -> {
                 try {
-                    if (!MainWindow.isAuthorized()){
+                    if (!Main.isAuthorized()){
                         openAuthorizeMethod();
                     } else{
                         outputField.setText("Ошибка - авторизация уже пройдена!");
@@ -56,7 +56,7 @@ public class MainController {
             });
     }
     public void openAuthorizeMethod() throws Exception{
-        AuthorizeWindow authWindow = new AuthorizeWindow();
+        Authorize authWindow = new Authorize();
         authWindow.showWindow();
     }
 }

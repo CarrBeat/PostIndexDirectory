@@ -29,7 +29,7 @@ public class AuthorizeController {
             String Login = loginField.getText();
             String Password = passwordField.getText();
             if (!Login.isEmpty() | !Password.isEmpty()){
-                if (MainWindow.authorization(Login, Password)) {
+                if (Authorize.authorization(Login, Password)) {
                     ((Node) (event.getSource())).getScene().getWindow().hide();
                 }
                 loginField.setText("");

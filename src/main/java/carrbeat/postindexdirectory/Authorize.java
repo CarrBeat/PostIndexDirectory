@@ -8,33 +8,33 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.ResultSet;
 
-public class MainWindow extends Application {
+public class Authorize extends Application {
+    Stage stage = new Stage();
 
-    private static boolean isAuthorize = false;
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 550);
-        stage.setTitle("Справочник почтовой индексации");
+    public void start(Stage stage) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("authorize.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 520, 360);
+        stage.setTitle("Окно авторизации");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
     public static boolean authorization(String inLogin, String inPassword) {
+        String url = "jdbc:mysql://localhost/postindexdirectory";
+        Object loginField = null;
+        String username = loginField.getText();
+        String
+
+
+
+
         String login = null;
         String password = null;
-
-        ResultSet rset = DatabaseHandler.getUser();
-
-
-
 
 
         try {
@@ -50,17 +50,24 @@ public class MainWindow extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
+
+
         if (inLogin.equals(login) & inPassword.equals(password)) {
             System.out.println("Авторизация пройдена! ");
-            isAuthorize = true;
+            Main.isAuthorized(true);
             return true;
         } else{
             return false;
         }
     }
 
-    public static boolean isAuthorized() {
-        return isAuthorize;
+    void showWindow() throws Exception{
+        start(stage);
     }
+
 
 }
