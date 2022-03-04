@@ -38,7 +38,7 @@ public class AuthorizeController {
                         loginField.setPromptText("Логин неверный!");
                         passwordField.setPromptText("Пароль неверный!");
                     }
-                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException | SQLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 loginField.setText("");

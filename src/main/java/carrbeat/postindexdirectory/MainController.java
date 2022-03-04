@@ -2,6 +2,7 @@ package carrbeat.postindexdirectory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import java.text.Normalizer;
@@ -52,6 +53,7 @@ public class MainController {
             try {
                 if (!Main.isAuthorized()) {
                     openAuthorizeMethod();
+                    outputField.setText("");
                 } else {
                     outputField.setText("Ошибка - авторизация уже пройдена!");
                 }
@@ -59,74 +61,37 @@ public class MainController {
                 e.printStackTrace();
             }
         });
+        editDButton.setOnAction(event -> {
+            try {
+                if (Main.isAuthorized()) {
+                    openAdminMethod();
+                    outputField.setText("");
+                } else {
+                    outputField.setText("Ошибка - авторизация не пройдена!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
+        guide.setOnAction(event -> {
+                try {
+                  Main.takeLocality();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+        });
     }
 
     public void openAuthorizeMethod() throws Exception{
         Authorize authWindow = new Authorize();
         authWindow.showWindow();
     }
-}
 
-class ComboBoxAutoComplete<T> {
-
-    private ComboBox<T> locality;
-
-
-    String filter = "";
-    private ObservableList<T> originalItems;
-
-    public ComboBoxAutoComplete(ComboBox<T> locality) {
-        this.locality = locality;
-        originalItems = FXCollections.observableArrayList(locality.getItems());
-        locality.setTooltip(new Tooltip());
-        locality.setOnKeyPressed(this::handleOnKeyPressed);
-        locality.setOnHidden(this::handleOnHiding);
-    }
-
-    public void handleOnKeyPressed(KeyEvent e) {
-        ObservableList<T> filteredList = FXCollections.observableArrayList();
-        KeyCode code = e.getCode();
-
-        if (code.isLetterKey()) {
-            filter += e.getText();
-        }
-        if (code == KeyCode.BACK_SPACE && filter.length() > 0) {
-            filter = filter.substring(0, filter.length() - 1);
-            locality.getItems().setAll(originalItems);
-        }
-        if (code == KeyCode.ESCAPE) {
-            filter = "";
-        }
-        if (filter.length() == 0) {
-            filteredList = originalItems;
-            locality.getTooltip().hide();
-        } else {
-            Stream<T> itens = locality.getItems().stream();
-            String txtUsr = unaccent(filter.toString().toLowerCase());
-            itens.filter(el -> unaccent(el.toString().toLowerCase()).contains(txtUsr)).forEach(filteredList::add);
-            locality.getTooltip().setText(txtUsr);
-            Window stage = locality.getScene().getWindow();
-            double posX = stage.getX() + locality.getBoundsInParent().getMinX();
-            double posY = stage.getY() + locality.getBoundsInParent().getMinY();
-            locality.getTooltip().show(stage, posX, posY);
-            locality.show();
-        }
-        locality.getItems().setAll(filteredList);
-    }
-
-    public void handleOnHiding(Event e) {
-        filter = "";
-        locality.getTooltip().hide();
-        T s = locality.getSelectionModel().getSelectedItem();
-        locality.getItems().setAll(originalItems);
-        locality.getSelectionModel().select(s);
-    }
-
-    private String unaccent(String s) {
-        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
-        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return pattern.matcher(temp).replaceAll("");
+    public void openAdminMethod() throws Exception{
+        Admin adminWindow = new Admin();
+        adminWindow.showAdminWindow();
     }
 
 }

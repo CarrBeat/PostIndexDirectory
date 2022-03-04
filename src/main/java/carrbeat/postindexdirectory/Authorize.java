@@ -21,7 +21,7 @@ public class Authorize extends Application {
         launch(args);
     }
 
-    public static boolean authorization(String inLogin, String inPassword) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, SQLException {
+    public static boolean authorization(String inLogin, String inPassword) throws Exception {
         String url = "jdbc:mysql://127.0.0.1/postindexdirectory";
         Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
         String login;
