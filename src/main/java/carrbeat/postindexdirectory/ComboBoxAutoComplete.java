@@ -25,7 +25,7 @@ class ComboBoxAutoComplete<T> {
         originalItems = FXCollections.observableArrayList(locality.getItems());
         locality.setTooltip(new Tooltip());
         locality.setOnKeyPressed(this::handleOnKeyPressed);
-        locality.setOnHidden(this::handleOnHiding);
+
     }
 
 
@@ -48,8 +48,8 @@ class ComboBoxAutoComplete<T> {
             locality.getTooltip().hide();
         } else {
             Stream<T> items = locality.getItems().stream();
-            String txtUsr = unaccent(filter.toLowerCase());
-            items.filter(el -> unaccent(el.toString().toLowerCase()).contains(txtUsr)).forEach(filteredList::add);
+            String txtUsr = unAccent(filter.toLowerCase());
+            items.filter(el -> unAccent(el.toString().toLowerCase()).contains(txtUsr)).forEach(filteredList::add);
             locality.getTooltip().setText(txtUsr);
             Window stage = locality.getScene().getWindow();
             double posX = stage.getX() + locality.getBoundsInParent().getMinX();
@@ -68,7 +68,7 @@ class ComboBoxAutoComplete<T> {
         locality.getSelectionModel().select(s);
     }
 
-    private String unaccent(String s) {
+    private String unAccent(String s) {
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
