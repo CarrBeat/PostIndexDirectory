@@ -28,6 +28,7 @@ class ComboBoxAutoComplete<T> {
         locality.setOnHidden(this::handleOnHiding);
     }
 
+
     public void handleOnKeyPressed(KeyEvent e) {
         ObservableList<T> filteredList = FXCollections.observableArrayList();
         KeyCode code = e.getCode();
@@ -37,7 +38,7 @@ class ComboBoxAutoComplete<T> {
         }
         if (code == KeyCode.BACK_SPACE && filter.length() > 0) {
             filter = filter.substring(0, filter.length() - 1);
-            locality.getItems().setAll(originalItems);
+            locality.setItems(originalItems);
         }
         if (code == KeyCode.ESCAPE) {
             filter = "";
@@ -46,9 +47,9 @@ class ComboBoxAutoComplete<T> {
             filteredList = originalItems;
             locality.getTooltip().hide();
         } else {
-            Stream<T> itens = locality.getItems().stream();
-            String txtUsr = unaccent(filter.toString().toLowerCase());
-            itens.filter(el -> unaccent(el.toString().toLowerCase()).contains(txtUsr)).forEach(filteredList::add);
+            Stream<T> items = locality.getItems().stream();
+            String txtUsr = unaccent(filter.toLowerCase());
+            items.filter(el -> unaccent(el.toString().toLowerCase()).contains(txtUsr)).forEach(filteredList::add);
             locality.getTooltip().setText(txtUsr);
             Window stage = locality.getScene().getWindow();
             double posX = stage.getX() + locality.getBoundsInParent().getMinX();
@@ -56,14 +57,14 @@ class ComboBoxAutoComplete<T> {
             locality.getTooltip().show(stage, posX, posY);
             locality.show();
         }
-        locality.getItems().setAll(filteredList);
+        locality.setItems(filteredList);
     }
 
     public void handleOnHiding(Event e) {
         filter = "";
         locality.getTooltip().hide();
         T s = locality.getSelectionModel().getSelectedItem();
-        locality.getItems().setAll(originalItems);
+        locality.setItems(originalItems);
         locality.getSelectionModel().select(s);
     }
 

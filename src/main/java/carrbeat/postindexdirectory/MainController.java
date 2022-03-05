@@ -1,5 +1,7 @@
 package carrbeat.postindexdirectory;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -32,8 +34,8 @@ public class MainController {
     @FXML
     private ComboBox<?> houseNum;
 
-   // @FXML
-    // private ComboBox<?> locality;
+    @FXML
+    private ComboBox<String> locality;
 
     @FXML
     private Button logInButton;
@@ -48,7 +50,10 @@ public class MainController {
     private ComboBox<?> streetName;
 
     @FXML
-    void initialize() {
+    void initialize() throws NoSuchMethodException, InstantiationException, SQLException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+        Main.takeLocality();
+        locality.setItems(Main.localityList);
+        new ComboBoxAutoComplete<>(locality);
         logInButton.setOnAction(event -> {
             try {
                 if (!Main.isAuthorized()) {
@@ -73,15 +78,7 @@ public class MainController {
                 e.printStackTrace();
             }
         });
-
-        guide.setOnAction(event -> {
-                try {
-                  Main.takeLocality();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-        });
+        new ComboBoxAutoComplete<>(locality);
     }
 
     public void openAuthorizeMethod() throws Exception{
