@@ -2,6 +2,7 @@ package carrbeat.postindexdirectory;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,7 +22,7 @@ public class MainController {
     private Button guide;
 
     @FXML
-    private ComboBox<?> houseNum;
+    private ComboBox<String> houseNum;
 
     @FXML
     private ComboBox<String> locality;
@@ -45,6 +46,7 @@ public class MainController {
 
         locality.setItems(Main.localityList);
         streetName.setItems(Main.streetsList);
+        houseNum.setItems(Main.housesList);
 
         logInButton.setOnAction(event -> {
             try {
@@ -73,7 +75,7 @@ public class MainController {
 
 
         locality.setOnAction(event -> {
-            Main.variablesClear();
+            Main.streetsList.clear();
             String selectedLocality = locality.getValue();
             try {
                 Main.knowSelectedLocalityID(selectedLocality);
@@ -83,9 +85,17 @@ public class MainController {
             }
         });
 
-
         streetName.setOnAction(event -> {
-
+            Main.housenum_idhouse_num.clear();
+            String selectedStreet = streetName.getValue();
+            if (!Objects.equals(selectedStreet, "")){
+                try {
+                    Main.knowSelectedStreetID(selectedStreet);
+                } catch (SQLException | ClassNotFoundException | InvocationTargetException
+                        | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
     }
