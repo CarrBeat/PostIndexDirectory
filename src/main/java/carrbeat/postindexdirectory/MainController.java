@@ -4,18 +4,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-
-import java.text.Normalizer;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Window;
 
 public class MainController {
 
@@ -47,13 +36,16 @@ public class MainController {
     private TextField postIndex;
 
     @FXML
-    private ComboBox<?> streetName;
+    private ComboBox<String> streetName;
+
 
     @FXML
     void initialize() throws NoSuchMethodException, InstantiationException, SQLException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         Main.takeLocality();
+
         locality.setItems(Main.localityList);
-        new ComboBoxAutoComplete<>(locality);
+        streetName.setItems(Main.streetsList);
+
         logInButton.setOnAction(event -> {
             try {
                 if (!Main.isAuthorized()) {
@@ -78,7 +70,24 @@ public class MainController {
                 e.printStackTrace();
             }
         });
-        new ComboBoxAutoComplete<>(locality);
+
+
+        locality.setOnAction(event -> {
+            Main.variablesClear();
+            String selectedLocality = locality.getValue();
+            try {
+                Main.knowSelectedLocalityID(selectedLocality);
+            } catch (SQLException | ClassNotFoundException | InvocationTargetException
+                    | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        streetName.setOnAction(event -> {
+
+        });
+
     }
 
     public void openAuthorizeMethod() throws Exception{
