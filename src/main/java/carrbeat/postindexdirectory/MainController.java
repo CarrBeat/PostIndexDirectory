@@ -77,18 +77,21 @@ public class MainController {
         locality.setOnAction(event -> {
             Main.streetsList.clear();
             String selectedLocality = locality.getValue();
-            try {
-                Main.knowSelectedLocalityID(selectedLocality);
-            } catch (SQLException | ClassNotFoundException | InvocationTargetException
-                    | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+            if (selectedLocality != null) {
+                try {
+                    Main.knowSelectedLocalityID(selectedLocality);
+                } catch (SQLException | ClassNotFoundException | InvocationTargetException
+                        | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
         streetName.setOnAction(event -> {
             Main.housenum_idhouse_num.clear();
+            Main.housesList.clear();
             String selectedStreet = streetName.getValue();
-            if (!Objects.equals(selectedStreet, "")){
+            if (selectedStreet != null){
                 try {
                     Main.knowSelectedStreetID(selectedStreet);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
@@ -96,6 +99,12 @@ public class MainController {
                     e.printStackTrace();
                 }
             }
+        });
+
+        houseNum.setOnAction(event -> {
+            Main.housenum_idhouse_num.clear();
+            String selectedHouseNum = houseNum.getValue();
+            Main.knowPostIndex(selectedHouseNum);
         });
 
     }
