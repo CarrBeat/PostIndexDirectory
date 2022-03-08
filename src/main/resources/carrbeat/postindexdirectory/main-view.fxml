@@ -9,7 +9,7 @@
    <children>
       <AnchorPane layoutX="684.0" layoutY="98.0" prefHeight="121.0" prefWidth="286.0" style="-fx-border-color: black; -fx-border-radius: 3;">
          <children>
-            <TextField fx:id="postIndex" alignment="CENTER" layoutX="79.0" layoutY="54.0" prefHeight="53.0" prefWidth="128.0" promptText="000000" style="-fx-background-color: d1e231;">
+            <TextField fx:id="postIndexItem" alignment="CENTER" layoutX="79.0" layoutY="54.0" prefHeight="53.0" prefWidth="128.0" promptText="000000" style="-fx-background-color: d1e231;">
                <font>
                   <Font name="Times New Roman Bold" size="29.0" />
                </font>

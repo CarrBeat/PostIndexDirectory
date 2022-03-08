@@ -2,7 +2,6 @@ package carrbeat.postindexdirectory;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -34,7 +33,7 @@ public class MainController {
     private TextField outputField;
 
     @FXML
-    private TextField postIndex;
+    private TextField postIndexItem;
 
     @FXML
     private ComboBox<String> streetName;
@@ -105,6 +104,7 @@ public class MainController {
             Main.housenum_idhouse_num.clear();
             String selectedHouseNum = houseNum.getValue();
             Main.knowPostIndex(selectedHouseNum);
+            postIndexItem.setText(Main.postIndex);
         });
 
     }
