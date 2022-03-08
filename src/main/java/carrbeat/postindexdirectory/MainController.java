@@ -18,7 +18,7 @@ public class MainController {
     private Button editDButton;
 
     @FXML
-    private Button guide;
+    private Button reset;
 
     @FXML
     private ComboBox<String> houseNum;
@@ -107,6 +107,18 @@ public class MainController {
             postIndexItem.setText(Main.postIndex);
         });
 
+        reset.setOnAction(event -> {
+            Main.resetAll();
+            locality.setPromptText("Здесь укажите населённый пункт!");
+            streetName.setPromptText("Сюда введите улицу!");
+            houseNum.setPromptText("Сюда введите номер дома (строения/корпуса)");
+            try {
+                Main.takeLocality();
+            } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException
+                    | InstantiationException | IllegalAccessException | SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void openAuthorizeMethod() throws Exception{

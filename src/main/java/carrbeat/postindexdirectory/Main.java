@@ -102,7 +102,6 @@ public class Main extends Application {
             while(resultSet.next()){
                 if (resultSet.getInt("street_idstreet") == selectedStreetID & resultSet.getInt("localityid") == selectedLocalityID) {
                     housenum_idhouse_num.add(resultSet.getInt("house num_idhouse num"));
-                    System.out.println(housenum_idhouse_num);
                 }
             }
         }
@@ -128,7 +127,16 @@ public class Main extends Application {
 
     public static void knowPostIndex(String selectedNumHouse){
         postIndex = house_postIndex.get(selectedNumHouse);
-        System.out.println(postIndex);
     }
 
+    public static void resetAll(){
+        localityList.clear();
+        streetsList.clear();
+        housenum_idhouse_num.clear();
+        housesList.clear();
+        house_postIndex.clear();
+        selectedStreetID = 0;
+        selectedLocalityID = 0;
+        postIndex = "";
+    }
 }
