@@ -32,7 +32,6 @@ public class Main extends Application {
     public static String postIndex;
     public static int searchedLocalityID;
     public static String searchedLocality;
-    public static int searchedStreet;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -175,7 +174,6 @@ public class Main extends Application {
             while(resultSet.next()){
                 if (Objects.equals(selectedIndex, resultSet.getString("post_index"))){
                     idHouse_house.put(resultSet.getInt("idhousenum"), resultSet.getString("num_house"));
-                    System.out.println(idHouse_house);
                 }
             }
         }
@@ -186,7 +184,6 @@ public class Main extends Application {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM street");
             while(resultSet.next()){
                 idStreet_street.put(resultSet.getInt("idstreet"), resultSet.getString("street name"));
-                System.out.println(idStreet_street);
             }
         }
 
@@ -201,6 +198,19 @@ public class Main extends Application {
                 }
             }
         }
+
+
+        try(Connection connection = DriverManager.getConnection(url, "root", "carrbeat")){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM locality");
+            while(resultSet.next()){
+                if (searchedLocalityID == resultSet.getInt("idlocality")) {
+                    searchedLocality = resultSet.getString("locality");
+                }
+                break;
+            }
+        }
+
     }
 
 }

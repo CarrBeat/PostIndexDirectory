@@ -132,6 +132,9 @@ public class MainController {
                             | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
+
+                    outputField.setText(Main.searchedLocality + ": " +
+                            String.valueOf(Main.idStreet_houseNum).substring(1, (String.valueOf(Main.idStreet_houseNum).length() - 1)));
                 } else {
                     outputField.setText("Неверный индекс!");
                     postIndexItem.setText("");
