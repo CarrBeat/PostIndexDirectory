@@ -63,7 +63,7 @@
             <Font name="Times New Roman Bold" size="17.0" />
          </font>
       </TextField>
-      <Button fx:id="reset" layoutX="609.0" layoutY="388.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: d1e231;" text="СБРОС">
+      <Button fx:id="reset" layoutX="605.0" layoutY="388.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="104.0" style="-fx-background-color: d1e231;" text="СБРОС">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
@@ -91,5 +91,10 @@
             </Button>
          </children>
       </AnchorPane>
+      <Button fx:id="searchByIndex" layoutX="719.0" layoutY="264.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: d1e231;" text="ИСКАТЬ АДРЕСА">
+         <font>
+            <Font name="Times New Roman Bold" size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

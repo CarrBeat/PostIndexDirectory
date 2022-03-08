@@ -15,6 +15,9 @@ public class MainController {
     private URL location;
 
     @FXML
+    private Button searchByIndex;
+
+    @FXML
     private Button editDButton;
 
     @FXML
@@ -42,6 +45,7 @@ public class MainController {
     @FXML
     void initialize() throws NoSuchMethodException, InstantiationException, SQLException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
         Main.takeLocality();
+        Main.knowPostIndexes();
 
         locality.setItems(Main.localityList);
         streetName.setItems(Main.streetsList);
@@ -119,6 +123,23 @@ public class MainController {
                 e.printStackTrace();
             }
         });
+
+            searchByIndex.setOnAction(event -> {
+                if(postIndexItem.getText().length() == 6 & Main.indexesList.contains(postIndexItem.getText())){
+                    try {
+                        Main.searchAdresses(postIndexItem.getText());
+                    } catch (SQLException | IllegalAccessException | InstantiationException
+                            | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    outputField.setText("Неверный индекс!");
+                    postIndexItem.setText("");
+                    postIndexItem.setPromptText("000000");
+                }
+
+            });
+
     }
 
     public void openAuthorizeMethod() throws Exception{
