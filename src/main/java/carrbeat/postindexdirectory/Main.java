@@ -100,8 +100,9 @@ public class Main extends Application {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM street_housenum");
             while(resultSet.next()){
-                if (resultSet.getInt("street_idstreet") == selectedStreetID) {
+                if (resultSet.getInt("street_idstreet") == selectedStreetID & resultSet.getInt("localityid") == selectedLocalityID) {
                     housenum_idhouse_num.add(resultSet.getInt("house num_idhouse num"));
+                    System.out.println(housenum_idhouse_num);
                 }
             }
         }
