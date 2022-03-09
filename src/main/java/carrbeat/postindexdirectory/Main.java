@@ -174,6 +174,7 @@ public class Main extends Application {
         idHouse_house.clear();
         idStreet_street.clear();
         street_houseNum.clear();
+        housesList.clear();
         String url = "jdbc:mysql://127.0.0.1/postindexdirectory";
         Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
         try(Connection connection = DriverManager.getConnection(url, "root", "carrbeat")){
@@ -216,6 +217,8 @@ public class Main extends Application {
                 }
             }
         }
+        System.out.println(streetsList);
     }
+
 
 }

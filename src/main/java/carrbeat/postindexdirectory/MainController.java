@@ -93,6 +93,7 @@ public class MainController {
             String selectedStreet = streetName.getValue();
             if (selectedStreet != null){
                 try {
+                    outputField.setText("");
                     outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
                     Main.knowSelectedStreetID(selectedStreet);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
@@ -131,12 +132,12 @@ public class MainController {
                     try {
                         Main.street_houseNum.clear();
                         Main.searchAdresses(postIndexItem.getText());
+                        outputField.setText(Main.searchedLocality + ":");
+                        tableView.setItems(Main.street_houseNum);
                     } catch (SQLException | IllegalAccessException | InstantiationException
                             | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-                    outputField.setText(Main.searchedLocality + ":");
-                    tableView.setItems(Main.street_houseNum);
                 } else {
                     outputField.setText("Неверный индекс!");
                     postIndexItem.setText("");
