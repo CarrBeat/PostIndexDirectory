@@ -128,21 +128,30 @@ public class MainController {
         });
 
             searchByIndex.setOnAction(event -> {
-                if(postIndexItem.getText().length() == 6 & Main.indexesList.contains(postIndexItem.getText())){
-                    try {
-                        Main.street_houseNum.clear();
-                        Main.searchAdresses(postIndexItem.getText());
-                        outputField.setText(Main.searchedLocality + ":");
-                        tableView.setItems(Main.street_houseNum);
-                    } catch (SQLException | IllegalAccessException | InstantiationException
-                            | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
-                        e.printStackTrace();
+                if (postIndexItem.getText() != null){
+                    if(postIndexItem.getText().length() == 6 & Main.indexesList.contains(postIndexItem.getText())
+                            & postIndexItem.getText() != null){
+                        try {
+                            Main.street_houseNum.clear();
+                            Main.searchAdresses(postIndexItem.getText());
+                            outputField.setText(Main.searchedLocality + ":");
+                            tableView.setItems(Main.street_houseNum);
+                        } catch (SQLException | IllegalAccessException | InstantiationException
+                                | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        outputField.setText("Неверный индекс!");
+                        postIndexItem.setText("");
+                        postIndexItem.setPromptText("000000");
                     }
                 } else {
                     outputField.setText("Неверный индекс!");
                     postIndexItem.setText("");
                     postIndexItem.setPromptText("000000");
+                    tableView.setItems(null);
                 }
+
 
             });
 
