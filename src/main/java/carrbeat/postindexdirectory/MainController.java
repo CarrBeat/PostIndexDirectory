@@ -9,12 +9,6 @@ import javafx.scene.control.*;
 public class MainController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button searchByIndex;
 
     @FXML
@@ -41,6 +35,8 @@ public class MainController {
     @FXML
     private ComboBox<String> streetName;
 
+    @FXML
+    private ListView<String> tableView;
 
     @FXML
     void initialize() throws NoSuchMethodException, InstantiationException, SQLException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
@@ -82,6 +78,8 @@ public class MainController {
             String selectedLocality = locality.getValue();
             if (selectedLocality != null) {
                 try {
+                    outputField.setText("");
+                    outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
                     Main.knowSelectedLocalityID(selectedLocality);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
                         | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
@@ -96,6 +94,7 @@ public class MainController {
             String selectedStreet = streetName.getValue();
             if (selectedStreet != null){
                 try {
+                    outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
                     Main.knowSelectedStreetID(selectedStreet);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
                         | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
@@ -109,10 +108,14 @@ public class MainController {
             String selectedHouseNum = houseNum.getValue();
             Main.knowPostIndex(selectedHouseNum);
             postIndexItem.setText(Main.postIndex);
+            Main.idStreet_houseNum.clear();
+            outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
         });
 
         reset.setOnAction(event -> {
             Main.resetAll();
+            outputField.setText("");
+            outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
             locality.setPromptText("Здесь укажите населённый пункт!");
             streetName.setPromptText("Сюда введите улицу!");
             houseNum.setPromptText("Сюда введите номер дома (строения/корпуса)");
@@ -127,14 +130,14 @@ public class MainController {
             searchByIndex.setOnAction(event -> {
                 if(postIndexItem.getText().length() == 6 & Main.indexesList.contains(postIndexItem.getText())){
                     try {
+                        Main.idStreet_houseNum.clear();
                         Main.searchAdresses(postIndexItem.getText());
                     } catch (SQLException | IllegalAccessException | InstantiationException
                             | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-
-                    outputField.setText(Main.searchedLocality + ": " +
-                            String.valueOf(Main.idStreet_houseNum).substring(1, (String.valueOf(Main.idStreet_houseNum).length() - 1)));
+                    outputField.setText(Main.searchedLocality + ":");
+                    tableView.setItems(Main.idStreet_houseNum);
                 } else {
                     outputField.setText("Неверный индекс!");
                     postIndexItem.setText("");

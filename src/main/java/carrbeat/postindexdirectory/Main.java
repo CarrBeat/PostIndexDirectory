@@ -23,7 +23,6 @@ public class Main extends Application {
     public static ObservableList<String> housesList = FXCollections.observableArrayList();
     public static ObservableList<String> indexesList = FXCollections.observableArrayList();
     public static ObservableList<String> idStreet_houseNum = FXCollections.observableArrayList();
-    public static ObservableList<String> searchedAdressesList = FXCollections.observableArrayList();
     public static Map<String, String> house_postIndex = new HashMap<>();
     public static Map<Integer, String> idHouse_house = new HashMap<>();
     public static Map<Integer, String> idStreet_street = new HashMap<>();
@@ -162,10 +161,19 @@ public class Main extends Application {
         selectedStreetID = 0;
         selectedLocalityID = 0;
         postIndex = "";
+        idStreet_houseNum.clear();
+        searchedLocality = "";
     }
+
 
     public static void searchAdresses(String selectedIndex) throws ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, InstantiationException, IllegalAccessException, SQLException {
+        idStreet_houseNum.clear();
+        searchedLocalityID = 0;
+        searchedLocality = "";
+        idHouse_house.clear();
+        idStreet_street.clear();
+        idStreet_houseNum.clear();
         String url = "jdbc:mysql://127.0.0.1/postindexdirectory";
         Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
         try(Connection connection = DriverManager.getConnection(url, "root", "carrbeat")){
@@ -206,8 +214,9 @@ public class Main extends Application {
             while(resultSet.next()){
                 if (searchedLocalityID == resultSet.getInt("idlocality")) {
                     searchedLocality = resultSet.getString("locality");
+                    System.out.println(searchedLocality);
+                    break;
                 }
-                break;
             }
         }
 
