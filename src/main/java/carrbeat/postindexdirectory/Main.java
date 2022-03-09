@@ -19,10 +19,10 @@ public class Main extends Application {
     public static ObservableList<String> localityList = FXCollections.observableArrayList();
     public static Map<String, Integer> localityMap = new HashMap<>();
     public static ObservableList<String> streetsList = FXCollections.observableArrayList();
-    public static ObservableList<Integer> housenum_idhouse_num = FXCollections.observableArrayList();
+    public static ObservableList<Integer> houseNum_idHouseNum = FXCollections.observableArrayList();
     public static ObservableList<String> housesList = FXCollections.observableArrayList();
     public static ObservableList<String> indexesList = FXCollections.observableArrayList();
-    public static ObservableList<String> idStreet_houseNum = FXCollections.observableArrayList();
+    public static ObservableList<String> street_houseNum = FXCollections.observableArrayList();
     public static Map<String, String> house_postIndex = new HashMap<>();
     public static Map<Integer, String> idHouse_house = new HashMap<>();
     public static Map<Integer, String> idStreet_street = new HashMap<>();
@@ -124,7 +124,7 @@ public class Main extends Application {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM street_housenum");
             while(resultSet.next()){
                 if (resultSet.getInt("street_idstreet") == selectedStreetID & resultSet.getInt("localityid") == selectedLocalityID) {
-                    housenum_idhouse_num.add(resultSet.getInt("house num_idhouse num"));
+                    houseNum_idHouseNum.add(resultSet.getInt("house num_idhouse num"));
                 }
             }
         }
@@ -139,7 +139,7 @@ public class Main extends Application {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM house_num");
             while(resultSet.next()){
-                if(housenum_idhouse_num.contains(resultSet.getInt("idhousenum"))){
+                if(houseNum_idHouseNum.contains(resultSet.getInt("idhousenum"))){
                     housesList.add(resultSet.getString("num_house"));
                     house_postIndex.put(resultSet.getString("num_house"),
                             resultSet.getString("post_index"));
@@ -155,25 +155,25 @@ public class Main extends Application {
     public static void resetAll(){
         localityList.clear();
         streetsList.clear();
-        housenum_idhouse_num.clear();
+        houseNum_idHouseNum.clear();
         housesList.clear();
         house_postIndex.clear();
         selectedStreetID = 0;
         selectedLocalityID = 0;
         postIndex = "";
-        idStreet_houseNum.clear();
+        street_houseNum.clear();
         searchedLocality = "";
     }
 
 
     public static void searchAdresses(String selectedIndex) throws ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, InstantiationException, IllegalAccessException, SQLException {
-        idStreet_houseNum.clear();
+        street_houseNum.clear();
         searchedLocalityID = 0;
         searchedLocality = "";
         idHouse_house.clear();
         idStreet_street.clear();
-        idStreet_houseNum.clear();
+        street_houseNum.clear();
         String url = "jdbc:mysql://127.0.0.1/postindexdirectory";
         Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
         try(Connection connection = DriverManager.getConnection(url, "root", "carrbeat")){
@@ -201,12 +201,10 @@ public class Main extends Application {
             while(resultSet.next()){
                 if (idHouse_house.containsKey(resultSet.getInt("house num_idhouse num"))){
                     searchedLocalityID = resultSet.getInt("localityid");
-                    idStreet_houseNum.add(idStreet_street.get(resultSet.getInt("street_idstreet")) + "-" + idHouse_house.get(resultSet.getInt("house num_idhouse num")));
-                    System.out.println(idStreet_houseNum);
+                    street_houseNum.add(idStreet_street.get(resultSet.getInt("street_idstreet")) + "-" + idHouse_house.get(resultSet.getInt("house num_idhouse num")));
                 }
             }
         }
-
 
         try(Connection connection = DriverManager.getConnection(url, "root", "carrbeat")){
             Statement statement = connection.createStatement();
@@ -214,12 +212,10 @@ public class Main extends Application {
             while(resultSet.next()){
                 if (searchedLocalityID == resultSet.getInt("idlocality")) {
                     searchedLocality = resultSet.getString("locality");
-                    System.out.println(searchedLocality);
                     break;
                 }
             }
         }
-
     }
 
 }

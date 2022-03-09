@@ -1,8 +1,7 @@
 package carrbeat.postindexdirectory;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -89,7 +88,7 @@ public class MainController {
         });
 
         streetName.setOnAction(event -> {
-            Main.housenum_idhouse_num.clear();
+            Main.houseNum_idHouseNum.clear();
             Main.housesList.clear();
             String selectedStreet = streetName.getValue();
             if (selectedStreet != null){
@@ -104,11 +103,11 @@ public class MainController {
         });
 
         houseNum.setOnAction(event -> {
-            Main.housenum_idhouse_num.clear();
+            Main.houseNum_idHouseNum.clear();
             String selectedHouseNum = houseNum.getValue();
             Main.knowPostIndex(selectedHouseNum);
             postIndexItem.setText(Main.postIndex);
-            Main.idStreet_houseNum.clear();
+            Main.street_houseNum.clear();
             outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
         });
 
@@ -130,14 +129,14 @@ public class MainController {
             searchByIndex.setOnAction(event -> {
                 if(postIndexItem.getText().length() == 6 & Main.indexesList.contains(postIndexItem.getText())){
                     try {
-                        Main.idStreet_houseNum.clear();
+                        Main.street_houseNum.clear();
                         Main.searchAdresses(postIndexItem.getText());
                     } catch (SQLException | IllegalAccessException | InstantiationException
                             | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
                     outputField.setText(Main.searchedLocality + ":");
-                    tableView.setItems(Main.idStreet_houseNum);
+                    tableView.setItems(Main.street_houseNum);
                 } else {
                     outputField.setText("Неверный индекс!");
                     postIndexItem.setText("");
