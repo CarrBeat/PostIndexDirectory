@@ -98,7 +98,6 @@ public class MainController {
                     outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
                     tableView.setItems(null);
                     Main.knowSelectedStreetID(selectedStreet);
-                    System.out.println(selectedStreet);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
                         | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
