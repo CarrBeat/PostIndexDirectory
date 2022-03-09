@@ -79,6 +79,7 @@ public class MainController {
                 try {
                     outputField.setText("");
                     outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
+                    tableView.setItems(null);
                     Main.knowSelectedLocalityID(selectedLocality);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
                         | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
@@ -95,7 +96,9 @@ public class MainController {
                 try {
                     outputField.setText("");
                     outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
+                    tableView.setItems(null);
                     Main.knowSelectedStreetID(selectedStreet);
+                    System.out.println(selectedStreet);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
                         | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
@@ -132,29 +135,26 @@ public class MainController {
                     if(postIndexItem.getText().length() == 6 & Main.indexesList.contains(postIndexItem.getText())
                             & postIndexItem.getText() != null){
                         try {
+                            Main.takeStreets();
+                            streetName.setItems(Main.streetsList);
+                            houseNum.setItems(Main.housesList);
                             Main.street_houseNum.clear();
                             Main.searchAdresses(postIndexItem.getText());
                             outputField.setText(Main.searchedLocality + ":");
                             tableView.setItems(Main.street_houseNum);
+                            streetName.setItems(Main.empty);
+                            streetName.setItems(Main.streetsList);
                         } catch (SQLException | IllegalAccessException | InstantiationException
                                 | NoSuchMethodException | InvocationTargetException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     } else {
-                        outputField.setText("Неверный индекс!");
+                        outputField.setText("Индекс неверный или не найден!");
                         postIndexItem.setText("");
                         postIndexItem.setPromptText("000000");
                     }
-                } else {
-                    outputField.setText("Неверный индекс!");
-                    postIndexItem.setText("");
-                    postIndexItem.setPromptText("000000");
-                    tableView.setItems(null);
                 }
-
-
             });
-
     }
 
     public void openAuthorizeMethod() throws Exception{

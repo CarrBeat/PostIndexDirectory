@@ -23,6 +23,7 @@ public class Main extends Application {
     public static ObservableList<String> housesList = FXCollections.observableArrayList();
     public static ObservableList<String> indexesList = FXCollections.observableArrayList();
     public static ObservableList<String> street_houseNum = FXCollections.observableArrayList();
+    public static ObservableList<String> empty = FXCollections.observableArrayList();
     public static Map<String, String> house_postIndex = new HashMap<>();
     public static Map<Integer, String> idHouse_house = new HashMap<>();
     public static Map<Integer, String> idStreet_street = new HashMap<>();
