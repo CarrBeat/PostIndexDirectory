@@ -7,6 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class AdminController {
 
 
@@ -17,7 +23,7 @@ public class AdminController {
     private Button addString;
 
     @FXML
-    private TableView<?> adminTable;
+    private TableView<adminTable> adminTable;
 
     @FXML
     private TextField column1;
@@ -38,7 +44,7 @@ public class AdminController {
     private TableView<?> houseNumTable;
 
     @FXML
-    private TableColumn<?, ?> idColumnTable1;
+    private TableColumn<adminTable, String> idColumnTable1;
 
     @FXML
     private TableColumn<?, ?> idColumnTable2;
@@ -68,13 +74,13 @@ public class AdminController {
     private TableView<?> localityTable;
 
     @FXML
-    private TableColumn<?, ?> loginColumn;
+    private TableColumn<adminTable, String> loginColumn;
 
     @FXML
     private TableColumn<?, ?> nameStreetColumn;
 
     @FXML
-    private TableColumn<?, ?> passwordColumn;
+    private TableColumn<adminTable, String> passwordColumn;
 
     @FXML
     private TableColumn<?, ?> postIndexColumn;
@@ -91,9 +97,22 @@ public class AdminController {
     @FXML
     private TextField tableNum;
 
+    ObservableList<adminTable> adminTableData = FXCollections.observableArrayList();
 
-    public void initialize(){
 
+    public void initialize() throws SQLException {
+        Connection connection = DBConnection.getConnection();
+        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM admin");
+        while (resultSet.next()){
+            adminTableData.add(new adminTable(resultSet.getString("id"),
+                    resultSet.getString("login"), resultSet.getString("password")));
+        }
+
+        idColumnTable1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+
+        adminTable.setItems(adminTableData);
     }
-    
+
 }
