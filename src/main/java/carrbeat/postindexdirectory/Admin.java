@@ -19,7 +19,7 @@ public class Admin extends Application {
 
     public void start(Stage stage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("admin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 760, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 860, 555);
         stage.setTitle("Окно администратора");
         stage.setScene(scene);
         stage.show();

@@ -15,66 +15,71 @@ import java.sql.SQLException;
 
 public class AdminController {
 
-
-    @FXML
-    private TextField IDtable;
-
-    @FXML
-    private Button addString;
-
     @FXML
     private TableView<adminTable> adminTable;
 
     @FXML
-    private TextField column1;
+    private TextField columnOne;
 
     @FXML
-    private TextField column2;
+    private TextField columnThree;
 
     @FXML
-    private TextField column3;
-
-    @FXML
-    private TableView<?> commonTable;
+    private TextField columnTwo;
 
     @FXML
     private TableColumn<?, ?> houseNumColumn;
 
     @FXML
-    private TableView<?> houseNumTable;
+    private TableColumn<adminTable, String> idAdminTable;
 
     @FXML
-    private TableColumn<adminTable, String> idColumnTable1;
-
-    @FXML
-    private TableColumn<?, ?> idColumnTable2;
-
-    @FXML
-    private TableColumn<?, ?> idColumnTable3;
-
-    @FXML
-    private TableColumn<?, ?> idColumnTable4;
-
-    @FXML
-    private TableColumn<?, ?> idColumnTable5;
+    private TableColumn<?, ?> idCommonColumn;
 
     @FXML
     private TableColumn<?, ?> idHouseNumColumn;
 
     @FXML
-    private TableColumn<?, ?> idLocalityColumn;
+    private TableColumn<?, ?> idHouseNumTable;
+
+    @FXML
+    private TableColumn<localityTable, String> idLocalityColumn;
+
+    @FXML
+    private TableColumn<?, ?> idLocalityTable;
 
     @FXML
     private TableColumn<?, ?> idStreetColumn;
 
     @FXML
-    private TableColumn<?, ?> localityColumn;
+    private TextField idTable;
 
     @FXML
-    private TableView<?> localityTable;
+    private TableColumn<localityTable, String> localityColumn;
+
+    @FXML
+    private TableView<adminTable> localityTable;
+
+    @FXML
+    private TableView<?> localityTable1;
+
+    @FXML
+    private TableView<?> localityTable11;
+
+    @FXML
+    private TableView<?> localityTable12;
 
     @FXML
     private TableColumn<adminTable, String> loginColumn;
+
+    @FXML
+    private Button loginPasswordButton;
+
+    @FXML
+    private Button loginPasswordButton1;
+
+    @FXML
+    private Button loginPasswordButton11;
 
     @FXML
     private TableColumn<?, ?> nameStreetColumn;
@@ -86,33 +91,41 @@ public class AdminController {
     private TableColumn<?, ?> postIndexColumn;
 
     @FXML
-    private Button removeString;
-
-    @FXML
-    private Button saveChanges;
-
-    @FXML
-    private TableView<?> streetTable;
-
-    @FXML
     private TextField tableNum;
 
     ObservableList<adminTable> adminTableData = FXCollections.observableArrayList();
+    ObservableList<adminTable> localityTableData = FXCollections.observableArrayList();
 
-
-    public void initialize() throws SQLException {
-        Connection connection = DBConnection.getConnection();
-        ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM admin");
-        while (resultSet.next()){
-            adminTableData.add(new adminTable(resultSet.getString("id"),
-                    resultSet.getString("login"), resultSet.getString("password")));
+    public void initialize()  {
+        try {
+            Connection connection = DBConnection.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM admin");
+            while (resultSet.next()) {
+                adminTableData.add(new adminTable(resultSet.getString("idadmin"),
+                        resultSet.getString("login"), resultSet.getString("password")));
+            }
+            idAdminTable.setCellValueFactory(new PropertyValueFactory<>("id"));
+            loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
+            passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+            adminTable.setItems(adminTableData);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
 
-        idColumnTable1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        try {
+            Connection connection = DBConnection.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM locality");
+            while (resultSet.next()) {
+                localityTableData.add(new localityTable(resultSet.getString("idlocality"),
+                        resultSet.getString("locality")));
+            }
+            idLocalityTable.setCellValueFactory(new PropertyValueFactory<>("idlocality"));
+            localityColumn.setCellValueFactory(new PropertyValueFactory<>("locality"));
+            localityTable.setItems(localityTableData);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
 
-        adminTable.setItems(adminTableData);
     }
 
 }

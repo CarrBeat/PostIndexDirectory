@@ -9,6 +9,10 @@ public class adminTable {
         this.password = password;
     }
 
+    public adminTable() {
+
+    }
+
     public String getId(){
         return id;
     }
