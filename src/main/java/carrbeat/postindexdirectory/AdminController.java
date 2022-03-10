@@ -6,42 +6,94 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
-
-import javax.swing.table.TableColumn;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.sql.Connection;
-import java.sql.SQLException;
-
+import javafx.scene.control.*;
 public class AdminController {
 
-    @FXML
-    private Button houseButton;
 
     @FXML
-    private Button houseHomeNumButton;
+    private TextField IDtable;
 
     @FXML
-    private Button localityButton;
+    private Button addString;
 
     @FXML
-    private Button loginPasswordButton;
+    private TableView<?> adminTable;
 
     @FXML
-    private Button streetButton;
+    private TextField column1;
 
     @FXML
-    private ListView<String> tableView;
+    private TextField column2;
 
+    @FXML
+    private TextField column3;
 
+    @FXML
+    private TableView<?> commonTable;
 
-    private final ObservableList<Admin.Person> adminDataTable = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<?, ?> houseNumColumn;
+
+    @FXML
+    private TableView<?> houseNumTable;
+
+    @FXML
+    private TableColumn<?, ?> idColumnTable1;
+
+    @FXML
+    private TableColumn<?, ?> idColumnTable2;
+
+    @FXML
+    private TableColumn<?, ?> idColumnTable3;
+
+    @FXML
+    private TableColumn<?, ?> idColumnTable4;
+
+    @FXML
+    private TableColumn<?, ?> idColumnTable5;
+
+    @FXML
+    private TableColumn<?, ?> idHouseNumColumn;
+
+    @FXML
+    private TableColumn<?, ?> idLocalityColumn;
+
+    @FXML
+    private TableColumn<?, ?> idStreetColumn;
+
+    @FXML
+    private TableColumn<?, ?> localityColumn;
+
+    @FXML
+    private TableView<?> localityTable;
+
+    @FXML
+    private TableColumn<?, ?> loginColumn;
+
+    @FXML
+    private TableColumn<?, ?> nameStreetColumn;
+
+    @FXML
+    private TableColumn<?, ?> passwordColumn;
+
+    @FXML
+    private TableColumn<?, ?> postIndexColumn;
+
+    @FXML
+    private Button removeString;
+
+    @FXML
+    private Button saveChanges;
+
+    @FXML
+    private TableView<?> streetTable;
+
+    @FXML
+    private TextField tableNum;
+
 
     public void initialize(){
-        column
-    }
 
+    }
     
 }
