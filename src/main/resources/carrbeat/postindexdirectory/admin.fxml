@@ -40,9 +40,9 @@
             <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="localityTable1" layoutX="404.0" layoutY="80.0" prefHeight="138.0" prefWidth="417.0">
+      <TableView fx:id="streetTable" layoutX="404.0" layoutY="80.0" prefHeight="138.0" prefWidth="417.0">
          <columns>
-            <TableColumn fx:id="idStreetColumn" prefWidth="28.0" text="ID" />
+            <TableColumn fx:id="idStreetTable" prefWidth="28.0" text="ID" />
             <TableColumn fx:id="nameStreetColumn" prefWidth="241.0" text="Улица" />
             <TableColumn fx:id="idLocalityColumn" prefWidth="147.0" text="ID Населённого пункта" />
          </columns>
@@ -52,7 +52,7 @@
             <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="localityTable11" layoutX="18.0" layoutY="389.0" prefHeight="147.0" prefWidth="370.0">
+      <TableView fx:id="houseNumTable" layoutX="18.0" layoutY="389.0" prefHeight="147.0" prefWidth="370.0">
          <columns>
             <TableColumn fx:id="idHouseNumTable" prefWidth="28.0" text="ID" />
             <TableColumn fx:id="houseNumColumn" prefWidth="156.0" text="Номер дома" />
@@ -64,12 +64,12 @@
             <Font name="Times New Roman" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="localityTable12" layoutX="404.0" layoutY="246.0" prefHeight="126.0" prefWidth="417.0">
+      <TableView fx:id="commonTable" layoutX="404.0" layoutY="246.0" prefHeight="126.0" prefWidth="417.0">
          <columns>
             <TableColumn fx:id="idCommonColumn" prefWidth="37.0" text="ID" />
             <TableColumn fx:id="idStreetColumn" prefWidth="78.0" text="ID Улицы" />
             <TableColumn fx:id="idHouseNumColumn" prefWidth="116.0" text="ID Номера дома" />
-            <TableColumn fx:id="idLocalityColumn" prefWidth="185.0" text="ID Населённого пункта" />
+            <TableColumn fx:id="idLocalityColumnCom" prefWidth="185.0" text="ID Населённого пункта" />
          </columns>
       </TableView>
       <Button id="loginPasswordButton" fx:id="loginPasswordButton1" layoutX="538.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="122.0" style="-fx-background-color: f0f0f0f0;" text="УДАЛИТЬ СТРОКУ" />
