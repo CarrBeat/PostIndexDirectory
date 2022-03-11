@@ -154,7 +154,7 @@ public class MainController {
         authWindow.showWindow();
     }
 
-    public void openAdminMethod() throws Exception{
+    public static void openAdminMethod() throws Exception{
         Admin adminWindow = new Admin();
         adminWindow.showAdminWindow();
     }

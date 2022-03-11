@@ -34,6 +34,7 @@ public class Authorize extends Application {
         }
         if (inLogin.equals(login) & inPassword.equals(password)) {
             Main.isAuthorized(true);
+            MainController.openAdminMethod();
             return true;
         } else{
             return false;
