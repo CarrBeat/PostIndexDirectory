@@ -9,31 +9,22 @@ public class MainController {
 
     @FXML
     private Button searchByIndex;
-
     @FXML
     private Button editDButton;
-
     @FXML
     private Button reset;
-
     @FXML
     private ComboBox<String> houseNum;
-
     @FXML
     private ComboBox<String> locality;
-
     @FXML
     private Button logInButton;
-
     @FXML
-    private TextField outputField;
-
+    public TextField outputField;
     @FXML
     private TextField postIndexItem;
-
     @FXML
     private ComboBox<String> streetName;
-
     @FXML
     private ListView<String> tableView;
 
@@ -98,7 +89,6 @@ public class MainController {
                     outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
                     tableView.setItems(null);
                     Main.knowSelectedStreetID(selectedStreet);
-                    System.out.println(selectedStreet);
                 } catch (SQLException | ClassNotFoundException | InvocationTargetException
                         | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
@@ -117,11 +107,13 @@ public class MainController {
 
         reset.setOnAction(event -> {
             Main.resetAll();
+            postIndexItem.setText("");
+            postIndexItem.setPromptText("000000");
             outputField.setText("");
             outputField.setPromptText("Сюда выводится населённый пункт, а также ошибки");
             locality.setPromptText("Здесь укажите населённый пункт!");
-            streetName.setPromptText("Сюда введите улицу!");
-            houseNum.setPromptText("Сюда введите номер дома (строения/корпуса)");
+            streetName.setPromptText("Здесь выберите улицу!");
+            houseNum.setPromptText("Здесь выберите номер дома (строения/корпуса)");
             try {
                 Main.takeLocality();
             } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException
