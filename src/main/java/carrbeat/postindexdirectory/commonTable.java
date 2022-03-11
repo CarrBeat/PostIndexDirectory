@@ -10,7 +10,6 @@ public class commonTable {
         this.localityID = localityID;
     }
 
-
     public String getIdCommon(){
         return idCommon;
     }

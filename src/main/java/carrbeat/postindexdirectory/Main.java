@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
@@ -70,7 +69,6 @@ public class Main extends Application {
         public static void knowSelectedLocalityID(String chosenLocality) throws SQLException, ClassNotFoundException,
                 InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
             selectedLocalityID = localityMap.get(chosenLocality); // получение id выбранного населённого пункта
-            takeStreets();
         }
 
     public static void knowSelectedStreetID(String chosenStreet) throws SQLException, ClassNotFoundException,
@@ -109,7 +107,8 @@ public class Main extends Application {
                     tempLocality = resultSet.getString("street_idlocality");
                     if(tempLocality.contains(String.valueOf(selectedLocalityID))){
                         streetsList.add(resultSet.getString("street name"));
-                        localityMap.put(resultSet.getString("street name"), resultSet.getInt("idstreet"));
+                        localityMap.put(resultSet.getString("street name"),
+                                resultSet.getInt("idstreet"));
                     }
                 }
                 processHouseNum();
@@ -124,7 +123,8 @@ public class Main extends Application {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM street_housenum");
             while(resultSet.next()){
-                if (resultSet.getInt("street_idstreet") == selectedStreetID & resultSet.getInt("localityid") == selectedLocalityID) {
+                if (resultSet.getInt("street_idstreet") == selectedStreetID &
+                        resultSet.getInt("localityid") == selectedLocalityID) {
                     houseNum_idHouseNum.add(resultSet.getInt("house num_idhouse num"));
                 }
             }
@@ -183,7 +183,8 @@ public class Main extends Application {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM house_num");
             while(resultSet.next()){
                 if (Objects.equals(selectedIndex, resultSet.getString("post_index"))){
-                    idHouse_house.put(resultSet.getInt("idhousenum"), resultSet.getString("num_house"));
+                    idHouse_house.put(resultSet.getInt("idhousenum"),
+                            resultSet.getString("num_house"));
                 }
             }
         }
@@ -193,7 +194,8 @@ public class Main extends Application {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM street");
             while(resultSet.next()){
-                idStreet_street.put(resultSet.getInt("idstreet"), resultSet.getString("street name"));
+                idStreet_street.put(resultSet.getInt("idstreet"),
+                        resultSet.getString("street name"));
             }
         }
 
@@ -203,7 +205,8 @@ public class Main extends Application {
             while(resultSet.next()){
                 if (idHouse_house.containsKey(resultSet.getInt("house num_idhouse num"))){
                     searchedLocalityID = resultSet.getInt("localityid");
-                    street_houseNum.add(idStreet_street.get(resultSet.getInt("street_idstreet")) + "-" + idHouse_house.get(resultSet.getInt("house num_idhouse num")));
+                    street_houseNum.add(idStreet_street.get(resultSet.getInt("street_idstreet"))
+                            + "-" + idHouse_house.get(resultSet.getInt("house num_idhouse num")));
                 }
             }
         }

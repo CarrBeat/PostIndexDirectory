@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,14 +21,12 @@ public class AdminController {
     @FXML
     private TableColumn<adminTable, String> passwordColumn;
 
-
     @FXML
     private TableView<localityTable> localityTable;
     @FXML
     private TableColumn<localityTable, String> idLocalityTable;
     @FXML
     private TableColumn<localityTable, String> localityColumn;
-
 
     @FXML
     private TableView<carrbeat.postindexdirectory.streetTable> streetTable; // вот тут вопросик
@@ -39,7 +36,6 @@ public class AdminController {
     private TableColumn<carrbeat.postindexdirectory.streetTable, String> nameStreetColumn;
     @FXML
     private TableColumn<carrbeat.postindexdirectory.streetTable, String> idLocalityColumn;
-
 
     @FXML
     private TableView<commonTable> commonTable;
@@ -52,7 +48,6 @@ public class AdminController {
     @FXML
     private TableColumn<commonTable, String> idLocalityColumnCom;
 
-
     @FXML
     private TableView<houseNumTable> houseNumTable;
     @FXML
@@ -61,27 +56,6 @@ public class AdminController {
     private TableColumn<houseNumTable, String> houseNumColumn;
     @FXML
     private TableColumn<houseNumTable, String> postIndexColumn;
-
-
-    @FXML
-    private TextField tableNum;
-    @FXML
-    private TextField idTable;
-    @FXML
-    private TextField columnOne;
-    @FXML
-    private TextField columnThree;
-    @FXML
-    private TextField columnTwo;
-
-
-    @FXML
-    private Button saveStringButton;
-    @FXML
-    private Button removeStringButton;
-    @FXML
-    private Button addStringButton;
-
 
     ObservableList<adminTable> adminTableData = FXCollections.observableArrayList();
     ObservableList<localityTable> localityTableData = FXCollections.observableArrayList();
@@ -167,7 +141,5 @@ public class AdminController {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-
     }
-
 }

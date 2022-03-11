@@ -24,6 +24,4 @@ public class localityTable extends adminTable {
     public void setLogin(String locality){
         this.locality = locality;
     }
-
-
 }

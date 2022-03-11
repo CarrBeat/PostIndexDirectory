@@ -1,7 +1,6 @@
 package carrbeat.postindexdirectory;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -9,31 +8,22 @@ public class MainController {
 
     @FXML
     private Button searchByIndex;
-
     @FXML
     private Button editDButton;
-
     @FXML
     private Button reset;
-
     @FXML
     private ComboBox<String> houseNum;
-
     @FXML
     private ComboBox<String> locality;
-
     @FXML
     private Button logInButton;
-
     @FXML
     private TextField outputField;
-
     @FXML
     private TextField postIndexItem;
-
     @FXML
     private ComboBox<String> streetName;
-
     @FXML
     private ListView<String> tableView;
 
@@ -70,7 +60,6 @@ public class MainController {
                 e.printStackTrace();
             }
         });
-
 
         locality.setOnAction(event -> {
             Main.streetsList.clear();
