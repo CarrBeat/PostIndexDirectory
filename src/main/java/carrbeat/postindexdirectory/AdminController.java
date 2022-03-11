@@ -24,7 +24,7 @@ public class AdminController {
 
 
     @FXML
-    private TableView<adminTable> localityTable; // вот тут вопросик
+    private TableView<localityTable> localityTable;
     @FXML
     private TableColumn<localityTable, String> idLocalityTable;
     @FXML
@@ -32,13 +32,13 @@ public class AdminController {
 
 
     @FXML
-    private TableView<streetTable> streetTable; // вот тут вопросик
+    private TableView<carrbeat.postindexdirectory.streetTable> streetTable; // вот тут вопросик
     @FXML
-    private TableColumn<streetTable, String> idStreetTable;
+    private TableColumn<carrbeat.postindexdirectory.streetTable, String> idStreetTable;
     @FXML
-    private TableColumn<streetTable, String> nameStreetColumn;
+    private TableColumn<carrbeat.postindexdirectory.streetTable, String> nameStreetColumn;
     @FXML
-    private TableColumn<streetTable, String> idLocalityColumn;
+    private TableColumn<carrbeat.postindexdirectory.streetTable, String> idLocalityColumn;
 
 
     @FXML
@@ -84,7 +84,9 @@ public class AdminController {
 
 
     ObservableList<adminTable> adminTableData = FXCollections.observableArrayList();
-    ObservableList<adminTable> localityTableData = FXCollections.observableArrayList();
+    ObservableList<localityTable> localityTableData = FXCollections.observableArrayList();
+    ObservableList<streetTable> streetTableData = FXCollections.observableArrayList();
+    ObservableList<commonTable> commonTableData = FXCollections.observableArrayList();
 
     public void initialize()  {
         try {
@@ -115,6 +117,23 @@ public class AdminController {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM street");
+            while (resultSet.next()) {
+                streetTableData.add(new streetTable(resultSet.getString("idstreet"),
+                        resultSet.getString("street name"),  resultSet.getString("street_idlocality")));
+            }
+            idStreetTable.setCellValueFactory(new PropertyValueFactory<>("idStreet"));
+            nameStreetColumn.setCellValueFactory(new PropertyValueFactory<>("nameStreet"));
+            idLocalityColumn.setCellValueFactory(new PropertyValueFactory<>("idLocalityCol"));
+            streetTable.setItems(streetTableData);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+
 
     }
 
