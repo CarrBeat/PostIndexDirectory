@@ -18,7 +18,7 @@
             <TableColumn fx:id="passwordColumn" minWidth="2.0" prefWidth="254.0" text="Пароль" />
         </columns>
       </TableView>
-      <Button id="loginPasswordButton" fx:id="loginPasswordButton" layoutX="404.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="102.0" style="-fx-background-color: f0f0f0f0;" text="СОХРАНИТЬ" />
+      <Button fx:id="saveStringButton" layoutX="404.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="102.0" style="-fx-background-color: f0f0f0f0;" text="СОХРАНИТЬ" />
       <Label layoutX="61.0" layoutY="47.0" prefHeight="33.0" prefWidth="265.0" text="Таблица № 1 -&quot;Данные администратора&quot;">
          <font>
             <Font name="Times New Roman" size="15.0" />
@@ -72,8 +72,8 @@
             <TableColumn fx:id="idLocalityColumnCom" prefWidth="181.5999755859375" text="ID Населённого пункта" />
          </columns>
       </TableView>
-      <Button id="loginPasswordButton" fx:id="loginPasswordButton1" layoutX="538.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="122.0" style="-fx-background-color: f0f0f0f0;" text="УДАЛИТЬ СТРОКУ" />
-      <Button id="loginPasswordButton" fx:id="loginPasswordButton11" layoutX="686.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: f0f0f0f0;" text="ДОБАВИТЬ СТРОКУ" />
+      <Button id="loginPasswordButton" fx:id="removeStringButton" layoutX="538.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="122.0" style="-fx-background-color: f0f0f0f0;" text="УДАЛИТЬ СТРОКУ" />
+      <Button id="loginPasswordButton" fx:id="addStringButton" layoutX="686.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="134.0" style="-fx-background-color: f0f0f0f0;" text="ДОБАВИТЬ СТРОКУ" />
       <TextField fx:id="tableNum" layoutX="404.0" layoutY="463.0" prefHeight="25.0" prefWidth="34.0" />
       <TextField fx:id="idTable" layoutX="455.0" layoutY="463.0" prefHeight="25.0" prefWidth="34.0" />
       <TextField fx:id="columnOne" layoutX="507.0" layoutY="463.0" prefHeight="25.0" prefWidth="92.0" />
