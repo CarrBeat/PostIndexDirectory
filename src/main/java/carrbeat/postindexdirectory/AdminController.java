@@ -76,11 +76,11 @@ public class AdminController {
 
 
     @FXML
-    private Button loginPasswordButton;
+    private Button saveStringButton;
     @FXML
-    private Button loginPasswordButton1;
+    private Button removeStringButton;
     @FXML
-    private Button loginPasswordButton11;
+    private Button addStringButton;
 
 
     ObservableList<adminTable> adminTableData = FXCollections.observableArrayList();
@@ -167,7 +167,6 @@ public class AdminController {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-
 
     }
 
