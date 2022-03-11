@@ -54,13 +54,13 @@ public class AdminController {
 
 
     @FXML
-    private TableView<?> houseNumTable;
+    private TableView<houseNumTable> houseNumTable;
     @FXML
-    private TableColumn<?, String> idHouseNumTable;
+    private TableColumn<houseNumTable, String> idHouseNumTable;
     @FXML
-    private TableColumn<?, String> houseNumColumn;
+    private TableColumn<houseNumTable, String> houseNumColumn;
     @FXML
-    private TableColumn<?, String> postIndexColumn;
+    private TableColumn<houseNumTable, String> postIndexColumn;
 
 
     @FXML
@@ -87,7 +87,7 @@ public class AdminController {
     ObservableList<localityTable> localityTableData = FXCollections.observableArrayList();
     ObservableList<streetTable> streetTableData = FXCollections.observableArrayList();
     ObservableList<commonTable> commonTableData = FXCollections.observableArrayList();
-    //ObservableList<commonTable> houseNumTableData = FXCollections.observableArrayList();
+    ObservableList<houseNumTable> houseNumTableData = FXCollections.observableArrayList();
 
     public void initialize()  {
         try {
@@ -153,10 +153,9 @@ public class AdminController {
             throwable.printStackTrace();
         }
 
-            /*
         try {
             Connection connection = DBConnection.getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("house_num");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM house_num");
             while (resultSet.next()) {
                 houseNumTableData.add(new houseNumTable(resultSet.getString("idhousenum"),
                         resultSet.getString("num_house"),  resultSet.getString("post_index")));
@@ -168,7 +167,7 @@ public class AdminController {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-        */
+
 
     }
 
