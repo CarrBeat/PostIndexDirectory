@@ -42,25 +42,25 @@ public class AdminController {
 
 
     @FXML
-    private TableView<?> commonTable;
+    private TableView<commonTable> commonTable;
     @FXML
-    private TableColumn<?, ?> idCommonColumn;
+    private TableColumn<commonTable, String> idCommonColumn;
     @FXML
-    private TableColumn<?, ?> idStreetColumn;
+    private TableColumn<commonTable, String> idStreetColumn;
     @FXML
-    private TableColumn<?, ?> idHouseNumColumn;
+    private TableColumn<commonTable, String> idHouseNumColumn;
     @FXML
-    private TableColumn<?, ?> idLocalityColumnCom;
+    private TableColumn<commonTable, String> idLocalityColumnCom;
 
 
     @FXML
     private TableView<?> houseNumTable;
     @FXML
-    private TableColumn<?, ?> idHouseNumTable;
+    private TableColumn<?, String> idHouseNumTable;
     @FXML
-    private TableColumn<?, ?> houseNumColumn;
+    private TableColumn<?, String> houseNumColumn;
     @FXML
-    private TableColumn<?, ?> postIndexColumn;
+    private TableColumn<?, String> postIndexColumn;
 
 
     @FXML
@@ -87,6 +87,7 @@ public class AdminController {
     ObservableList<localityTable> localityTableData = FXCollections.observableArrayList();
     ObservableList<streetTable> streetTableData = FXCollections.observableArrayList();
     ObservableList<commonTable> commonTableData = FXCollections.observableArrayList();
+    //ObservableList<commonTable> houseNumTableData = FXCollections.observableArrayList();
 
     public void initialize()  {
         try {
@@ -123,7 +124,8 @@ public class AdminController {
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM street");
             while (resultSet.next()) {
                 streetTableData.add(new streetTable(resultSet.getString("idstreet"),
-                        resultSet.getString("street name"),  resultSet.getString("street_idlocality")));
+                        resultSet.getString("street name"),
+                        resultSet.getString("street_idlocality")));
             }
             idStreetTable.setCellValueFactory(new PropertyValueFactory<>("idStreet"));
             nameStreetColumn.setCellValueFactory(new PropertyValueFactory<>("nameStreet"));
@@ -133,7 +135,40 @@ public class AdminController {
             throwable.printStackTrace();
         }
 
+        try {
+            Connection connection = DBConnection.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM street_housenum");
+            while (resultSet.next()) {
+                commonTableData.add(new commonTable(resultSet.getString("idstreet-house num"),
+                        resultSet.getString("street_idstreet"),
+                        resultSet.getString("house num_idhouse num"),
+                        resultSet.getString("localityid")));
+            }
+            idCommonColumn.setCellValueFactory(new PropertyValueFactory<>("IdCommon"));
+            idStreetColumn.setCellValueFactory(new PropertyValueFactory<>("StreetId"));
+            idHouseNumColumn.setCellValueFactory(new PropertyValueFactory<>("HouseNumID"));
+            idLocalityColumnCom.setCellValueFactory(new PropertyValueFactory<>("LocalityID"));
+            commonTable.setItems(commonTableData);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
 
+            /*
+        try {
+            Connection connection = DBConnection.getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery("house_num");
+            while (resultSet.next()) {
+                houseNumTableData.add(new houseNumTable(resultSet.getString("idhousenum"),
+                        resultSet.getString("num_house"),  resultSet.getString("post_index")));
+            }
+            idHouseNumTable.setCellValueFactory(new PropertyValueFactory<>("IdhouseNum"));
+            houseNumColumn.setCellValueFactory(new PropertyValueFactory<>("HouseNum"));
+            postIndexColumn.setCellValueFactory(new PropertyValueFactory<>("PostIndex"));
+            houseNumTable.setItems(houseNumTableData);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        */
 
     }
 
