@@ -16,10 +16,6 @@ public class Authorize extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public static boolean authorization(String inLogin, String inPassword) throws Exception {
         String url = "jdbc:mysql://127.0.0.1/postindexdirectory";
         Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();

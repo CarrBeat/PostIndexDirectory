@@ -35,11 +35,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 550);
-        stage.setTitle("Справочник почтовой индексации");
-        stage.setScene(scene);
-        stage.show();
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 550);
+            stage.setTitle("Справочник почтовой индексации");
+            stage.setScene(scene);
+            stage.show();
     }
 
     public static void main(String[] args) {
@@ -69,8 +69,10 @@ public class Main extends Application {
 
         public static void knowSelectedLocalityID(String chosenLocality) throws SQLException, ClassNotFoundException,
                 InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-            selectedLocalityID = localityMap.get(chosenLocality); // получение id выбранного населённого пункта
-            takeStreets();
+            if(localityMap.get(chosenLocality) != null){
+                selectedLocalityID = localityMap.get(chosenLocality); // получение id выбранного населённого пункта
+                takeStreets();
+            }
         }
 
     public static void knowSelectedStreetID(String chosenStreet) throws SQLException, ClassNotFoundException,
